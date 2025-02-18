@@ -7,16 +7,9 @@ import matplotlib.cm as cm
 import pandas as pd
 
 df = pd.read_csv("simulation_results.csv")
+df["n_sites_log10"] = np.log10(df["n_sites"])
 
-df = pd.DataFrame([
-    dict(n_sites_log10=10, deployment_days_per_site=365, z_acc=0.9, psi_rmse=0.1),
-    dict(n_sites_log10=20, deployment_days_per_site=180, z_acc=0.3, psi_rmse=0.2),
-    dict(n_sites_log10=10, deployment_days_per_site=270, z_acc=0.56, psi_rmse=0.4),
-    dict(n_sites_log10=20, deployment_days_per_site=50, z_acc=0.2, psi_rmse=0.2),
-    dict(n_sites_log10=30, deployment_days_per_site=365, z_acc=0.5, psi_rmse=0.4),
-])
-
-st.title("3D Surface Plot with Streamlit")
+st.title("Occupancy Emulator")
 
 columns = list(df.columns)
 x_axis = st.selectbox("X axis:", columns, index=columns.index("n_sites_log10"))
